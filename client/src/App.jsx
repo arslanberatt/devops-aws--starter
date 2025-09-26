@@ -20,6 +20,7 @@ function App() {
     try {
       setLoading(true);
       setError(null);
+      console.log('Fetching tasks from API...');
       const response = await taskService.getAllTasks();
       setTasks(response.data);
     } catch (err) {
