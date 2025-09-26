@@ -12,7 +12,6 @@ function App() {
   const [error, setError] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  // Fetch tasks on component mount
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -60,11 +59,8 @@ function App() {
     fetchTasks();
   };
 
-  // let sangam = 'unused variable here';
-
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex justify-between items-center">
@@ -119,7 +115,6 @@ function App() {
         )}
       </main>
 
-      {/* Add Task Dialog */}
       {isDialogOpen && (
         <AddTaskDialog onClose={() => setIsDialogOpen(false)} onSubmit={handleAddTask} />
       )}

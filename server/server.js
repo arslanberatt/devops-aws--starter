@@ -35,7 +35,7 @@ app.use('*', (req, res) => {
 });
 
 // Database connection
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/task-app';
+const mongoUri = process.env.MONGO_URI;
 mongoose
   .connect(mongoUri, {
     useNewUrlParser: true,
