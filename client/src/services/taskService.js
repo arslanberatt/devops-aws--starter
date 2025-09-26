@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://16.171.147.109:5010';
 
 class TaskService {
   async getAllTasks() {
@@ -6,15 +6,6 @@ class TaskService {
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      const text = await response.text();
-      console.error('Received non-JSON response:', text.substring(0, 200));
-      throw new Error(
-        `Invalid response format. Expected JSON but received ${contentType || 'unknown'}`,
-      );
     }
 
     return await response.json();
@@ -30,22 +21,8 @@ class TaskService {
     });
 
     if (!response.ok) {
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
-      } else {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-    }
-
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      const text = await response.text();
-      console.error('Received non-JSON response:', text.substring(0, 200));
-      throw new Error(
-        `Invalid response format. Expected JSON but received ${contentType || 'unknown'}`,
-      );
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
     return await response.json();
@@ -57,22 +34,8 @@ class TaskService {
     });
 
     if (!response.ok) {
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
-      } else {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-    }
-
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      const text = await response.text();
-      console.error('Received non-JSON response:', text.substring(0, 200));
-      throw new Error(
-        `Invalid response format. Expected JSON but received ${contentType || 'unknown'}`,
-      );
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
     return await response.json();
